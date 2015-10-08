@@ -212,7 +212,7 @@ public class IBeaconProtocol {
 	    	// If already discovered, then just refresh the RSSI of the existing instance and return
 	    	if(_arrOrderedIBeacons.contains(newBeacon)){
 
-	    		int newDistance = (int)calculateDistance(newBeacon.getPowerValue(), rssi);
+	    		double newDistance = calculateDistance(newBeacon.getPowerValue(), rssi);
 	    		IBeacon previousIBeaconInfo = findIfExists(newBeacon);
 	    		double oldDistance = previousIBeaconInfo.getProximity();
 
@@ -249,7 +249,7 @@ public class IBeaconProtocol {
 	    	}
 	    	// Review this
 	    	Log.i(Utils.LOG_TAG,device.getName() + " " + device.getAddress() + " " + newBeacon.getPowerValue() + " " + rssi + " Connectable: " + newBeacon.isConnectable());
-	    	newBeacon.setProximity((int) calculateDistance(newBeacon.getPowerValue(), rssi));
+	    	newBeacon.setProximity(calculateDistance(newBeacon.getPowerValue(), rssi));
 	    	
 	    	if(!_arrOrderedIBeacons.contains(newBeacon)) {
 
@@ -430,16 +430,20 @@ public class IBeaconProtocol {
 	 * @return
 	 */
 	private double calculateDistance(int txPower, double rssi) {
+
 		if (rssi == 0) {
+
 			return -1.0; // if we cannot determine accuracy, return -1.
 		}
 
 		double ratio = rssi*1.0/txPower;
 		if (ratio < 1.0) {
+
 			return Math.pow(ratio,10);
-		}
-		else {
-			double accuracy =  (0.89976)*Math.pow(ratio,7.7095) + 0.111;    
+
+		} else {
+
+			double accuracy = (0.89976)*Math.pow(ratio,7.7095) + 0.111;
 			return accuracy;
 		}
 	} 
@@ -454,7 +458,9 @@ public class IBeaconProtocol {
 	    @Override
 	    public int compare(IBeacon b1, IBeacon b2) {
 
-	        return b1.getProximity() - b2.getProximity();
+			String distance_1 = String.valueOf(b1.getProximity());
+			String distance_2 = String.valueOf(b2.getProximity());
+	        return distance_1.compareTo(distance_2);
 	    }
 	}
 }

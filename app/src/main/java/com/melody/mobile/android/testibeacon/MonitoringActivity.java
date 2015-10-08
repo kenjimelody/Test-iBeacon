@@ -97,6 +97,7 @@ public class MonitoringActivity extends AppCompatActivity implements IBeaconList
         if(requestCode == REQUEST_BLUETOOTH_ENABLE){
             if(resultCode == Activity.RESULT_OK) {
 
+                _beacons.clear();
                 scanBeacons();
             }
         }
