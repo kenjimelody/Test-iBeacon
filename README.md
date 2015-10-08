@@ -1,4 +1,4 @@
-iBeacon Library Referrence.
+<strong>iBeacon Library Referrence.</strong>
 
-http://www.easibeacon.com/doc/
-https://github.com/easibeacon
+<p>http://www.easibeacon.com/doc/</p>
+<p>https://github.com/easibeacon</p>
