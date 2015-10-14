@@ -60,7 +60,7 @@ public class IBeaconProtocol {
 	/**
 	 * The prefix for identifying easiBeacons
 	 */	
-	public static final String EASIBEACON_IDPREFIX = "easiBeacon_";
+	public static final String EASIBEACON_IDPREFIX = "HMSensor_";
 	
 	/**
 	 * State of the search process to notify the listener: started
@@ -229,6 +229,7 @@ public class IBeaconProtocol {
 
 	    	if(device.getName() != null){
 
+				Log.e("device.getName()", String.valueOf(device.getName()));
 		    	if(device.getName().startsWith(EASIBEACON_IDPREFIX)){
 
 		    		newBeacon.setEasiBeacon(true);
